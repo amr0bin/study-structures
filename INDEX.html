@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Academic Repository — Index</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --blue:       #5BA4CF;
+    --blue-light: #EAF4FB;
+    --blue-mid:   #3A85B3;
+    --blue-dark:  #1F5C84;
+    --pink:       #E87FA3;
+    --pink-light: #FDEEF4;
+    --pink-mid:   #D45C84;
+    --pink-dark:  #9C2E54;
+    --yellow:     #E8C84A;
+    --yellow-light:#FEFAE8;
+    --yellow-mid: #C9A828;
+    --yellow-dark:#7A6210;
+    --ink:        #1C2331;
+    --ink-mid:    #3D4F66;
+    --ink-soft:   #6B7E96;
+    --surface:    #FFFFFF;
+    --surface-2:  #F7F9FC;
+    --surface-3:  #EEF2F7;
+    --border:     #D8E2EE;
+    --radius:     10px;
+    --radius-lg:  16px;
+    --shadow-sm:  0 1px 3px rgba(28,35,49,.07), 0 1px 2px rgba(28,35,49,.04);
+    --shadow-md:  0 4px 16px rgba(28,35,49,.09), 0 1px 4px rgba(28,35,49,.05);
+    --shadow-lg:  0 12px 40px rgba(28,35,49,.13), 0 4px 12px rgba(28,35,49,.06);
+    --font: 'Asap', system-ui, sans-serif;
+    --transition: 200ms cubic-bezier(.4,0,.2,1);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--surface-2);
+    color: var(--ink);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── Layout shell ── */
+  .shell {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+  }
+
+  /* ── Header ── */
+  header {
+    grid-column: 1 / -1;
+    background: var(--ink);
+    color: #fff;
+    padding: 28px 40px 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 600px 300px at 80% 120%, rgba(91,164,207,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 400px 200px at 10% -40%, rgba(232,127,163,.14) 0%, transparent 60%),
+      radial-gradient(ellipse 300px 200px at 50% 130%, rgba(232,200,74,.10) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .header-text { position: relative; }
+
+  .header-eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 6px;
+  }
+
+  header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    line-height: 1.2;
+    color: #fff;
+  }
+
+  header p {
+    font-size: 14px;
+    color: rgba(255,255,255,.6);
+    margin-top: 6px;
+    max-width: 520px;
+  }
+
+  .header-pills {
+    position: relative;
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+
+  .degree-pill {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+  }
+
+  .pill-blue   { background: rgba(91,164,207,.2);  color: #a8d4ef; border: 1px solid rgba(91,164,207,.3); }
+  .pill-pink   { background: rgba(232,127,163,.2); color: #f0a8c2; border: 1px solid rgba(232,127,163,.3); }
+  .pill-yellow { background: rgba(232,200,74,.2);  color: #ead87a; border: 1px solid rgba(232,200,74,.3); }
+  .pill-purple { background: rgba(180,130,220,.2); color: #d0a8f0; border: 1px solid rgba(180,130,220,.3); }
+
+  /* ── Sidebar ── */
+  aside {
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    padding: 28px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .sidebar-section {
+    margin-bottom: 6px;
+  }
+
+  .sidebar-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 0 20px;
+    margin: 18px 0 8px;
+  }
+
+  .sidebar-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 20px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    text-decoration: none;
+    transition: background var(--transition), color var(--transition);
+    cursor: pointer;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+  }
+
+  .sidebar-link:hover { background: var(--surface-3); color: var(--ink); }
+
+  .sidebar-link.active {
+    background: var(--blue-light);
+    color: var(--blue-dark);
+    font-weight: 600;
+  }
+
+  .sidebar-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .dot-blue   { background: var(--blue); }
+  .dot-pink   { background: var(--pink); }
+  .dot-yellow { background: var(--yellow-mid); }
+  .dot-teal   { background: #5BB8A0; }
+  .dot-purple { background: #A87ECC; }
+  .dot-coral  { background: #E89060; }
+
+  .sidebar-link .badge {
+    margin-left: auto;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 7px;
+    border-radius: 10px;
+    background: var(--surface-3);
+    color: var(--ink-soft);
+  }
+
+  .sidebar-link.active .badge {
+    background: rgba(91,164,207,.2);
+    color: var(--blue-dark);
+  }
+
+  /* ── Main content ── */
+  main {
+    padding: 36px 44px 80px;
+    max-width: 900px;
+  }
+
+  /* ── Filter bar ── */
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 32px;
+    align-items: center;
+  }
+
+  .filter-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+
+  .filter-btn {
+    font-family: var(--font);
+    font-size: 12.5px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1.5px solid var(--border);
+    background: var(--surface);
+    color: var(--ink-mid);
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .filter-btn:hover { border-color: var(--blue); color: var(--blue-dark); }
+
+  .filter-btn.active {
+    background: var(--blue);
+    border-color: var(--blue);
+    color: #fff;
+  }
+
+  /* ── Section headings ── */
+  .section-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 40px 0 18px;
+    scroll-margin-top: 24px;
+  }
+
+  .section-heading:first-of-type { margin-top: 0; }
+
+  .section-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .icon-blue   { background: var(--blue-light); }
+  .icon-pink   { background: var(--pink-light); }
+  .icon-yellow { background: var(--yellow-light); }
+  .icon-teal   { background: #E3F5EF; }
+  .icon-purple { background: #F0EBF9; }
+  .icon-coral  { background: #FEF1E8; }
+
+  .section-heading h2 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ink);
+    flex: 1;
+  }
+
+  .section-heading .count-badge {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: var(--surface-3);
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+
+  .section-desc {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    margin-bottom: 16px;
+    padding-left: 44px;
+    line-height: 1.55;
+  }
+
+  /* ── Work type cards ── */
+  .cards-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-lg);
+    padding: 20px 24px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition), border-color var(--transition), transform var(--transition);
+    cursor: default;
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-md);
+    border-color: var(--blue);
+    transform: translateY(-1px);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+  }
+
+  .card-title {
+    font-size: 15.5px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.3;
+  }
+
+  .card-body {
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin-bottom: 14px;
+  }
+
+  .card-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  /* Degree tags */
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 9px;
+    border-radius: 6px;
+    letter-spacing: .03em;
+  }
+
+  .tag-msc    { background: var(--blue-light);   color: var(--blue-dark); }
+  .tag-ma     { background: var(--pink-light);   color: var(--pink-dark); }
+  .tag-dip    { background: var(--yellow-light); color: var(--yellow-dark); }
+  .tag-phd    { background: #F0EBF9;             color: #6030A0; }
+  .tag-all    { background: var(--surface-3);    color: var(--ink-mid); }
+
+  /* Word count chip */
+  .wordcount {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* Structure link */
+  .structure-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--blue-mid);
+    text-decoration: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    background: var(--blue-light);
+    border: 1px solid rgba(91,164,207,.25);
+    transition: background var(--transition), color var(--transition);
+  }
+
+  .structure-link:hover {
+    background: var(--blue);
+    color: #fff;
+  }
+
+  .structure-link.coming {
+    color: var(--ink-soft);
+    background: var(--surface-3);
+    border-color: var(--border);
+    pointer-events: none;
+  }
+
+  /* Structure accordion */
+  .structure-accordion {
+    margin-top: 14px;
+    border-top: 1px solid var(--border);
+    padding-top: 14px;
+  }
+
+  .accordion-toggle {
+    font-family: var(--font);
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--ink-mid);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0;
+    transition: color var(--transition);
+  }
+
+  .accordion-toggle:hover { color: var(--ink); }
+
+  .accordion-arrow {
+    transition: transform var(--transition);
+    display: inline-block;
+    font-size: 10px;
+  }
+
+  .accordion-toggle.open .accordion-arrow { transform: rotate(90deg); }
+
+  .accordion-body {
+    display: none;
+    margin-top: 12px;
+  }
+
+  .accordion-body.visible { display: block; }
+
+  .structure-steps {
+    list-style: none;
+    counter-reset: step;
+  }
+
+  .structure-steps li {
+    counter-increment: step;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 7px 0;
+    font-size: 13px;
+    color: var(--ink-mid);
+    border-bottom: 1px solid var(--surface-3);
+  }
+
+  .structure-steps li:last-child { border-bottom: none; }
+
+  .structure-steps li::before {
+    content: counter(step);
+    font-size: 11px;
+    font-weight: 600;
+    min-width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--surface-3);
+    color: var(--ink-soft);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-title { font-weight: 600; color: var(--ink); }
+  .step-desc  { font-size: 12px; color: var(--ink-soft); margin-top: 1px; }
+
+  /* Tips inside cards */
+  .card-tip {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    line-height: 1.55;
+    border-left: 3px solid;
+  }
+
+  .tip-blue   { background: var(--blue-light);   color: var(--blue-dark);   border-color: var(--blue); }
+  .tip-pink   { background: var(--pink-light);   color: var(--pink-dark);   border-color: var(--pink); }
+  .tip-yellow { background: var(--yellow-light); color: var(--yellow-dark); border-color: var(--yellow-mid); }
+
+  /* ── Journey timeline at top of sidebar ── */
+  .journey-box {
+    margin: 0 14px 24px;
+    background: var(--ink);
+    border-radius: var(--radius-lg);
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .journey-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 200px 120px at 120% 120%, rgba(91,164,207,.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .journey-title {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.5);
+    margin-bottom: 10px;
+  }
+
+  .journey-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .journey-step {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    padding-bottom: 12px;
+  }
+
+  .journey-step:last-child { padding-bottom: 0; }
+
+  .journey-step::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 22px;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255,255,255,.12);
+  }
+
+  .journey-step:last-child::before { display: none; }
+
+  .journey-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    font-weight: 700;
+    z-index: 1;
+  }
+
+  .journey-dot-blue   { background: var(--blue);      color: #fff; }
+  .journey-dot-pink   { background: var(--pink);      color: #fff; }
+  .journey-dot-yellow { background: var(--yellow);    color: var(--yellow-dark); }
+  .journey-dot-purple { background: #A87ECC;          color: #fff; }
+
+  .journey-info {}
+  .journey-degree { font-size: 12px; font-weight: 600; color: #fff; }
+  .journey-field  { font-size: 11px; color: rgba(255,255,255,.5); }
+
+  /* ── Hidden state for filter ── */
+  .card.hidden { display: none; }
+  .section-group.hidden { display: none; }
+
+  /* ── Scrollbar ── */
+  aside::-webkit-scrollbar { width: 4px; }
+  aside::-webkit-scrollbar-track { background: transparent; }
+  aside::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+
+  /* ── Responsive ── */
+  @media (max-width: 720px) {
+    .shell { grid-template-columns: 1fr; }
+    aside  { display: none; }
+    main   { padding: 24px 20px 60px; }
+    header { padding: 20px; flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <!-- ══ HEADER ══ -->
+  <header>
+    <div class="header-text">
+      <div class="header-eyebrow">Personal Academic Repository</div>
+      <h1>Assignment Type Index</h1>
+      <p>A structured guide to every form of work across your academic journey — with structures, tips, and links to detailed reference files.</p>
+    </div>
+    <div class="header-pills">
+      <span class="degree-pill pill-blue">MSc Disability Studies</span>
+      <span class="degree-pill pill-pink">MA Counselling Psych</span>
+      <span class="degree-pill pill-yellow">Diploma Art Therapy</span>
+      <span class="degree-pill pill-purple">PhD Clinical / Public Health</span>
+    </div>
+  </header>
+
+  <!-- ══ SIDEBAR ══ -->
+  <aside>
+    <div class="journey-box">
+      <div class="journey-title">Your pathway</div>
+      <div class="journey-steps">
+        <div class="journey-step">
+          <div class="journey-dot journey-dot-blue">1</div>
+          <div class="journey-info">
+            <div class="journey-degree">MSc</div>
+            <div class="journey-field">Disability Studies</div>
+          </div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-dot journey-dot-pink">2</div>
+          <div class="journey-info">
+            <div class="journey-degree">MA</div>
+            <div class="journey-field">Counselling Psychology</div>
+          </div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-dot journey-dot-yellow">3</div>
+          <div class="journey-info">
+            <div class="journey-degree">Diploma</div>
+            <div class="journey-field">Art Therapy</div>
+          </div>
+        </div>
+        <div class="journey-step">
+          <div class="journey-dot journey-dot-purple">4</div>
+          <div class="journey-info">
+            <div class="journey-degree">PhD</div>
+            <div class="journey-field">Clinical / Public Health</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="sidebar-label">Core — all degrees</div>
+    <button class="sidebar-link active" onclick="scrollTo('core')">
+      <span class="sidebar-dot dot-blue"></span> Core written work
+      <span class="badge">5</span>
+    </button>
+
+    <div class="sidebar-label">Frequently assessed</div>
+    <button class="sidebar-link" onclick="scrollTo('applied')">
+      <span class="sidebar-dot dot-teal"></span> Applied & case work
+      <span class="badge">2</span>
+    </button>
+    <button class="sidebar-link" onclick="scrollTo('reflective')">
+      <span class="sidebar-dot dot-pink"></span> Reflective writing
+      <span class="badge">2</span>
+    </button>
+
+    <div class="sidebar-label">Degree-specific</div>
+    <button class="sidebar-link" onclick="scrollTo('portfolio')">
+      <span class="sidebar-dot dot-coral"></span> Portfolios
+      <span class="badge">2</span>
+    </button>
+    <button class="sidebar-link" onclick="scrollTo('creative')">
+      <span class="sidebar-dot dot-yellow"></span> Creative practice
+      <span class="badge">1</span>
+    </button>
+    <button class="sidebar-link" onclick="scrollTo('research')">
+      <span class="sidebar-dot dot-purple"></span> Advanced research
+      <span class="badge">2</span>
+    </button>
+
+    <div class="sidebar-label">Assessments</div>
+    <button class="sidebar-link" onclick="scrollTo('exams')">
+      <span class="sidebar-dot dot-blue"></span> Exams & viva
+      <span class="badge">2</span>
+    </button>
+  </aside>
+
+  <!-- ══ MAIN ══ -->
+  <main>
+
+    <!-- Filter bar -->
+    <div class="filter-bar">
+      <span class="filter-label">Filter by degree</span>
+      <button class="filter-btn active" onclick="filterDegree('all', this)">All degrees</button>
+      <button class="filter-btn" onclick="filterDegree('msc', this)">MSc</button>
+      <button class="filter-btn" onclick="filterDegree('ma', this)">MA</button>
+      <button class="filter-btn" onclick="filterDegree('dip', this)">Diploma</button>
+      <button class="filter-btn" onclick="filterDegree('phd', this)">PhD</button>
+    </div>
+
+
+    <!-- ══ SECTION: CORE WRITTEN WORK ══ -->
+    <div id="core" class="section-group">
+      <div class="section-heading">
+        <div class="section-icon icon-blue">✍️</div>
+        <h2>Core written work</h2>
+        <span class="count-badge">5 types · all degrees</span>
+      </div>
+      <p class="section-desc">These appear in every postgraduate degree. Getting the structure of each one internalised early means you can put all your energy into content rather than form.</p>
+
+      <!-- THESIS -->
+      <div class="cards-grid">
+        <div class="card" data-degrees="msc ma dip phd">
+          <div class="card-header">
+            <div class="card-title">Thesis / Dissertation</div>
+          </div>
+          <div class="card-body">The centrepiece of every postgraduate degree. A sustained, original scholarly argument built on a clear research question, literature synthesis, methodology, findings, and discussion. The structure is consistent across levels — what scales is depth, word count, and the degree of originality expected.</div>
+          <div class="card-meta">
+            <span class="tag tag-all">All degrees</span>
+            <span class="wordcount">MSc 15–20k · MA 15–20k · Dip 10–15k · PhD 60–100k</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link" href="THESIS_STRUCTURE.md">📄 Full structure guide →</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Quick structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Introduction</div><div class="step-desc">Rationale · structure overview · research question</div></div></li>
+                <li><div><div class="step-title">Literature review</div><div class="step-desc">Theoretical framework · state of the art · gap statement</div></div></li>
+                <li><div><div class="step-title">Methodology</div><div class="step-desc">Design · method · justification · limitations</div></div></li>
+                <li><div><div class="step-title">Results</div><div class="step-desc">Objective presentation of findings matched to research question</div></div></li>
+                <li><div><div class="step-title">Discussion</div><div class="step-desc">Interpretation linked to literature · implications stated</div></div></li>
+                <li><div><div class="step-title">Conclusion</div><div class="step-desc">Answer to research question · contributions · future directions</div></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- CRITICAL ESSAY -->
+        <div class="card" data-degrees="msc ma dip phd">
+          <div class="card-header">
+            <div class="card-title">Critical / Analytical Essay</div>
+          </div>
+          <div class="card-body">The most frequent assignment type across all taught modules. An argument-driven response to a set question or prompt. Unlike the thesis, it does not require primary research — but it must engage critically with the literature and construct a clear, evidenced position.</div>
+          <div class="card-meta">
+            <span class="tag tag-all">All degrees</span>
+            <span class="wordcount">1,500–5,000 words depending on level</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Quick structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Introduction</div><div class="step-desc">Context · your argument (thesis statement) · roadmap</div></div></li>
+                <li><div><div class="step-title">Main body paragraphs</div><div class="step-desc">Each paragraph = one claim + evidence + analysis + link to argument</div></div></li>
+                <li><div><div class="step-title">Counter-argument</div><div class="step-desc">Acknowledge the strongest opposing view · rebut it</div></div></li>
+                <li><div><div class="step-title">Conclusion</div><div class="step-desc">Restate argument · synthesise evidence · wider implications</div></div></li>
+              </ol>
+              <div class="card-tip tip-blue">The thesis statement (your argument) should appear in your introduction and be answerable. Every paragraph should connect back to it — if it doesn't, cut it.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- STANDALONE LIT REVIEW -->
+        <div class="card" data-degrees="msc ma phd">
+          <div class="card-header">
+            <div class="card-title">Standalone Literature Review</div>
+          </div>
+          <div class="card-body">Sometimes assessed as its own piece — separate from a thesis. A thematic synthesis of existing research that maps what is known, what is contested, and where the gaps lie. The key distinction from a summary: your voice organises the literature, not the other way around.</div>
+          <div class="card-meta">
+            <span class="tag tag-msc">MSc</span>
+            <span class="tag tag-ma">MA</span>
+            <span class="tag tag-phd">PhD</span>
+            <span class="wordcount">3,000–8,000 words</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Quick structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Introduction</div><div class="step-desc">Scope · search strategy · organising principle</div></div></li>
+                <li><div><div class="step-title">Theoretical framework</div><div class="step-desc">The lens through which you're reading the literature</div></div></li>
+                <li><div><div class="step-title">Thematic sections</div><div class="step-desc">Group studies by what they show — not chronologically</div></div></li>
+                <li><div><div class="step-title">Critical evaluation</div><div class="step-desc">Quality, limitations, contestations in the field</div></div></li>
+                <li><div><div class="step-title">Gap statement</div><div class="step-desc">What is missing · what your or future research could address</div></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESEARCH PROPOSAL -->
+        <div class="card" data-degrees="msc ma dip phd">
+          <div class="card-header">
+            <div class="card-title">Research Proposal</div>
+          </div>
+          <div class="card-body">Required for admission to every degree you're entering, and sometimes assessed within a programme. Essentially a mini thesis structure: you demonstrate that you have a viable, well-grounded question and a credible plan to answer it. The PhD version is the most substantial.</div>
+          <div class="card-meta">
+            <span class="tag tag-all">All degrees</span>
+            <span class="wordcount">Taught: 1,000–3,000 · PhD application: 5,000–10,000</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Quick structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Title & rationale</div><div class="step-desc">Why this, why now, why you</div></div></li>
+                <li><div><div class="step-title">Research question</div><div class="step-desc">Specific, answerable, appropriately scoped</div></div></li>
+                <li><div><div class="step-title">Literature context & gap</div><div class="step-desc">What exists · what's missing · your contribution</div></div></li>
+                <li><div><div class="step-title">Proposed methodology</div><div class="step-desc">Design · method · participants · analysis</div></div></li>
+                <li><div><div class="step-title">Ethical considerations</div><div class="step-desc">Consent · risk · access · positionality</div></div></li>
+                <li><div><div class="step-title">Timeline</div><div class="step-desc">Realistic phased plan across the degree period</div></div></li>
+              </ol>
+              <div class="card-tip tip-yellow">For PhD proposals specifically: supervisors are looking for evidence that you can think independently about a problem. Show you understand the existing debates — don't just describe the topic.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANNOTATED BIBLIOGRAPHY -->
+        <div class="card" data-degrees="msc ma phd">
+          <div class="card-header">
+            <div class="card-title">Annotated Bibliography</div>
+          </div>
+          <div class="card-body">A list of sources, each followed by a brief critical annotation. Often assigned early in a programme to develop your ability to evaluate literature. Each annotation summarises the source and then critically assesses its relevance, methodology, and limitations.</div>
+          <div class="card-meta">
+            <span class="tag tag-msc">MSc</span>
+            <span class="tag tag-ma">MA</span>
+            <span class="tag tag-phd">PhD</span>
+            <span class="wordcount">150–300 words per source · typically 8–15 sources</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Per-entry structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Full reference</div><div class="step-desc">In your required citation style (usually APA 7th)</div></div></li>
+                <li><div><div class="step-title">Summary</div><div class="step-desc">What the source argues or reports — 2–3 sentences</div></div></li>
+                <li><div><div class="step-title">Critical evaluation</div><div class="step-desc">Strengths, limitations, methodological notes</div></div></li>
+                <li><div><div class="step-title">Relevance</div><div class="step-desc">Why this source matters to your research question or topic</div></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div><!-- /cards-grid -->
+    </div><!-- /section core -->
+
+
+    <!-- ══ SECTION: APPLIED & CASE WORK ══ -->
+    <div id="applied" class="section-group">
+      <div class="section-heading">
+        <div class="section-icon icon-teal">🔍</div>
+        <h2>Applied & case work</h2>
+        <span class="count-badge">2 types · MSc · MA · PhD</span>
+      </div>
+      <p class="section-desc">These apply theory directly to a real or constructed scenario — a policy, organisation, person, or client. The structure shifts significantly depending on your field.</p>
+
+      <div class="cards-grid">
+        <!-- CASE STUDY - social science -->
+        <div class="card" data-degrees="msc phd">
+          <div class="card-header">
+            <div class="card-title">Case Study — Social Science / Policy</div>
+          </div>
+          <div class="card-body">An in-depth analysis of a person, organisation, community, policy, or event, examined through a theoretical lens. Common in Disability Studies for analysing policy frameworks or lived experience accounts. The goal is to generate insight that extends beyond the single case.</div>
+          <div class="card-meta">
+            <span class="tag tag-msc">MSc</span>
+            <span class="tag tag-phd">PhD</span>
+            <span class="wordcount">2,000–5,000 words</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Quick structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Introduction</div><div class="step-desc">The case · your analytical question · the theoretical lens</div></div></li>
+                <li><div><div class="step-title">Context</div><div class="step-desc">Background needed to understand the case</div></div></li>
+                <li><div><div class="step-title">Analysis</div><div class="step-desc">Apply the theoretical framework to the case data</div></div></li>
+                <li><div><div class="step-title">Discussion</div><div class="step-desc">What does this case reveal beyond itself?</div></div></li>
+                <li><div><div class="step-title">Conclusion</div><div class="step-desc">Implications · limitations of this single-case approach</div></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- CASE FORMULATION - clinical -->
+        <div class="card" data-degrees="ma phd">
+          <div class="card-header">
+            <div class="card-title">Case Formulation — Clinical / Counselling</div>
+          </div>
+          <div class="card-body">A structured clinical analysis of a real or simulated client — integrating presenting concerns, developmental history, psychological theory, and a planned intervention. This is a core professional competency in both Counselling Psychology and Clinical Psych, and it has a very specific structure.</div>
+          <div class="card-meta">
+            <span class="tag tag-ma">MA</span>
+            <span class="tag tag-phd">PhD</span>
+            <span class="wordcount">2,000–4,000 words</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Quick structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Presenting problem</div><div class="step-desc">What the client brings · in their own terms</div></div></li>
+                <li><div><div class="step-title">Developmental & social history</div><div class="step-desc">Relevant background · predisposing factors</div></div></li>
+                <li><div><div class="step-title">Theoretical formulation</div><div class="step-desc">How your chosen framework explains the presentation</div></div></li>
+                <li><div><div class="step-title">Precipitating & perpetuating factors</div><div class="step-desc">What triggered it · what maintains it</div></div></li>
+                <li><div><div class="step-title">Protective factors & strengths</div><div class="step-desc">Resources the client brings</div></div></li>
+                <li><div><div class="step-title">Intervention plan</div><div class="step-desc">Goals · modality · approach · rationale</div></div></li>
+                <li><div><div class="step-title">Risk assessment</div><div class="step-desc">To self / others · protective factors · management plan</div></div></li>
+              </ol>
+              <div class="card-tip tip-pink">In Counselling Psych, your positionality as the therapist is always part of the formulation. Reflexivity — how your own background might affect the therapeutic relationship — is not optional.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ SECTION: REFLECTIVE WRITING ══ -->
+    <div id="reflective" class="section-group">
+      <div class="section-heading">
+        <div class="section-icon icon-pink">🪞</div>
+        <h2>Reflective writing</h2>
+        <span class="count-badge">2 types · MA · Diploma · PhD</span>
+      </div>
+      <p class="section-desc">Reflective writing in postgraduate study is not journalling — it has a formal structure and is assessed on the quality of critical analysis, not personal disclosure. It is central to both Counselling Psychology and Art Therapy.</p>
+
+      <div class="cards-grid">
+        <!-- REFLECTIVE ESSAY -->
+        <div class="card" data-degrees="ma dip phd">
+          <div class="card-header">
+            <div class="card-title">Reflective Essay</div>
+          </div>
+          <div class="card-body">A structured critical examination of an experience, encounter, or piece of practice — connecting what happened to theory and professional development. Most programmes specify a framework (Gibbs, Kolb, Johns). The essay moves between the personal and the analytical throughout.</div>
+          <div class="card-meta">
+            <span class="tag tag-ma">MA</span>
+            <span class="tag tag-dip">Diploma</span>
+            <span class="tag tag-phd">PhD</span>
+            <span class="wordcount">1,500–3,000 words</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Gibbs cycle structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Description</div><div class="step-desc">What happened? Factual account — no interpretation yet</div></div></li>
+                <li><div><div class="step-title">Feelings</div><div class="step-desc">What were you thinking and feeling? Honest, specific</div></div></li>
+                <li><div><div class="step-title">Evaluation</div><div class="step-desc">What was good and bad about the experience?</div></div></li>
+                <li><div><div class="step-title">Analysis</div><div class="step-desc">What sense can you make of the situation? Link to theory</div></div></li>
+                <li><div><div class="step-title">Conclusion</div><div class="step-desc">What else could you have done? What have you learned?</div></div></li>
+                <li><div><div class="step-title">Action plan</div><div class="step-desc">If this arose again, what would you do differently?</div></div></li>
+              </ol>
+              <div class="card-tip tip-pink">The most common mistake is staying in "description" mode throughout. Examiners are looking for depth in the Analysis stage — that is where theory meets experience, and where the marks live.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PERSONAL DEVELOPMENT / PROCESS JOURNAL -->
+        <div class="card" data-degrees="ma dip">
+          <div class="card-header">
+            <div class="card-title">Personal Development Log / Process Journal</div>
+          </div>
+          <div class="card-body">An ongoing, cumulative reflective document maintained throughout a placement or training year. In Counselling Psychology it tracks your development as a practitioner; in Art Therapy it documents your personal art-making process and its therapeutic significance. Not a diary — it is critically reflective throughout.</div>
+          <div class="card-meta">
+            <span class="tag tag-ma">MA</span>
+            <span class="tag tag-dip">Diploma</span>
+            <span class="wordcount">Ongoing · reviewed at intervals or at year end</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> What to include in each entry
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Experience / observation</div><div class="step-desc">What occurred — specific and concrete</div></div></li>
+                <li><div><div class="step-title">Emotional response</div><div class="step-desc">Your affective reaction — named precisely</div></div></li>
+                <li><div><div class="step-title">Theoretical connection</div><div class="step-desc">Which framework or concept illuminates this?</div></div></li>
+                <li><div><div class="step-title">Implications for practice</div><div class="step-desc">What does this mean for how you work?</div></div></li>
+                <li><div><div class="step-title">Supervision link</div><div class="step-desc">What will you bring to supervision? What support do you need?</div></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ SECTION: PORTFOLIOS ══ -->
+    <div id="portfolio" class="section-group">
+      <div class="section-heading">
+        <div class="section-icon icon-coral">📁</div>
+        <h2>Practice portfolios</h2>
+        <span class="count-badge">2 types · MA · Diploma</span>
+      </div>
+      <p class="section-desc">Portfolios are not single assignments — they are accumulated evidence of your professional development, built across a full placement year. Starting them well-structured from day one saves enormous stress at submission.</p>
+
+      <div class="cards-grid">
+        <!-- COUNSELLING PORTFOLIO -->
+        <div class="card" data-degrees="ma">
+          <div class="card-header">
+            <div class="card-title">Professional Practice Portfolio — Counselling Psychology</div>
+          </div>
+          <div class="card-body">A comprehensive, evidence-based record of your clinical training. Submitted at the end of a placement year, it demonstrates competency across ethical practice, theoretical application, client work, and personal development. Every section needs evidence — not just description.</div>
+          <div class="card-meta">
+            <span class="tag tag-ma">MA only</span>
+            <span class="wordcount">Typically 10,000–15,000 words + appendices</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Standard components
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Placement log</div><div class="step-desc">Hours, client demographics, session counts — verified by supervisor</div></div></li>
+                <li><div><div class="step-title">Process notes or session recordings</div><div class="step-desc">With client consent · anonymised</div></div></li>
+                <li><div><div class="step-title">Case study (1–2 clients)</div><div class="step-desc">Full formulation with theory-practice integration</div></div></li>
+                <li><div><div class="step-title">Supervisor reports</div><div class="step-desc">Mid-placement and end-of-placement assessment</div></div></li>
+                <li><div><div class="step-title">Personal development review</div><div class="step-desc">How you have grown · areas still developing</div></div></li>
+                <li><div><div class="step-title">Ethical incidents log</div><div class="step-desc">Challenges encountered and how you navigated them</div></div></li>
+              </ol>
+              <div class="card-tip tip-pink">Keep a running document throughout placement rather than trying to reconstruct it at the end. A strong portfolio feels like it was lived in, not assembled in a panic.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ART THERAPY PORTFOLIO -->
+        <div class="card" data-degrees="dip">
+          <div class="card-header">
+            <div class="card-title">Practice Portfolio — Art Therapy Diploma</div>
+          </div>
+          <div class="card-body">Documents your clinical practice across art therapy placements alongside your own personal art-making. The unique element is the dual evidence base — client artwork and your own creative process are both assessed. Strong documentation of client work requires careful ethical attention (consent, anonymisation, storage of artwork).</div>
+          <div class="card-meta">
+            <span class="tag tag-dip">Diploma only</span>
+            <span class="wordcount">Typically 8,000–12,000 words + visual documentation</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Standard components
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Placement log</div><div class="step-desc">Hours, client groups, setting type · supervisor verified</div></div></li>
+                <li><div><div class="step-title">Client artwork documentation</div><div class="step-desc">Photographs with session notes · anonymised · consent obtained</div></div></li>
+                <li><div><div class="step-title">Session process notes</div><div class="step-desc">What happened in the room · art-making process · themes</div></div></li>
+                <li><div><div class="step-title">Personal art journal</div><div class="step-desc">Your own art-making — visual + written reflection</div></div></li>
+                <li><div><div class="step-title">Supervisor reports</div><div class="step-desc">Assessment of clinical skills and professional development</div></div></li>
+                <li><div><div class="step-title">Ethical reflections</div><div class="step-desc">Boundary issues, dual role challenges, consent processes</div></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ SECTION: CREATIVE PRACTICE ══ -->
+    <div id="creative" class="section-group">
+      <div class="section-heading">
+        <div class="section-icon icon-yellow">🎨</div>
+        <h2>Creative practice with commentary</h2>
+        <span class="count-badge">1 type · Diploma only</span>
+      </div>
+      <p class="section-desc">Unique to the Art Therapy Diploma. Your own art-making is not incidental to training — it is a core assessed component, treated as both personal development and theoretical inquiry.</p>
+
+      <div class="cards-grid">
+        <div class="card" data-degrees="dip">
+          <div class="card-header">
+            <div class="card-title">Personal Art-Making with Written Commentary</div>
+          </div>
+          <div class="card-body">You engage in your own regular art-making practice throughout the Diploma — not as entertainment but as a reflective and therapeutic process. This is documented in a visual journal (the artworks themselves) and accompanied by written commentary that connects your creative process to therapeutic theory. Examiners assess both the quality of your reflection and the honesty of your engagement with the material.</div>
+          <div class="card-meta">
+            <span class="tag tag-dip">Diploma only</span>
+            <span class="wordcount">Ongoing visual journal + 2,000–4,000 words commentary</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Commentary structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Description of the art-making process</div><div class="step-desc">What media · what emerged · what surprised you</div></div></li>
+                <li><div><div class="step-title">Emotional and somatic response</div><div class="step-desc">What arose during making · bodily and affective experience</div></div></li>
+                <li><div><div class="step-title">Theoretical connection</div><div class="step-desc">Which therapeutic frameworks illuminate your process?</div></div></li>
+                <li><div><div class="step-title">Link to clinical practice</div><div class="step-desc">How does experiencing this yourself inform how you hold it for clients?</div></div></li>
+                <li><div><div class="step-title">Development over time</div><div class="step-desc">How has your relationship to your own art-making shifted across training?</div></div></li>
+              </ol>
+              <div class="card-tip tip-yellow">The most common feedback is that students intellectualise rather than genuinely engage. The commentary should be honest about difficulty, resistance, and what the process stirred up — not just a tidy interpretation of a finished image.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ SECTION: ADVANCED RESEARCH ══ -->
+    <div id="research" class="section-group">
+      <div class="section-heading">
+        <div class="section-icon icon-purple">🔬</div>
+        <h2>Advanced research work</h2>
+        <span class="count-badge">2 types · MSc · PhD</span>
+      </div>
+      <p class="section-desc">These formats are more methodologically rigorous and appear in programmes with a strong research training component. The systematic review in particular is a distinct skill from the literature review — it has its own formal protocol.</p>
+
+      <div class="cards-grid">
+        <!-- SYSTEMATIC REVIEW -->
+        <div class="card" data-degrees="msc phd">
+          <div class="card-header">
+            <div class="card-title">Systematic Review</div>
+          </div>
+          <div class="card-body">Fundamentally different from a narrative literature review. It is a formal research methodology with a pre-registered protocol, explicit search strategy, structured screening process (PRISMA), and quality appraisal tools. The goal is to answer a specific question by comprehensively and transparently synthesising all available evidence on a topic.</div>
+          <div class="card-meta">
+            <span class="tag tag-msc">MSc</span>
+            <span class="tag tag-phd">PhD</span>
+            <span class="wordcount">8,000–15,000 words · often a substantial standalone piece</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> PRISMA-aligned structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Protocol & registration</div><div class="step-desc">Pre-register your question, eligibility criteria, and methods (PROSPERO)</div></div></li>
+                <li><div><div class="step-title">Search strategy</div><div class="step-desc">Databases searched · search terms · date ranges · limits</div></div></li>
+                <li><div><div class="step-title">PRISMA screening</div><div class="step-desc">Records identified → screened → eligible → included (with flowchart)</div></div></li>
+                <li><div><div class="step-title">Quality appraisal</div><div class="step-desc">Assess risk of bias in each included study (CASP, Cochrane, etc.)</div></div></li>
+                <li><div><div class="step-title">Data extraction</div><div class="step-desc">Systematic extraction of relevant data from each study</div></div></li>
+                <li><div><div class="step-title">Synthesis</div><div class="step-desc">Narrative synthesis or meta-analysis · GRADE if applicable</div></div></li>
+                <li><div><div class="step-title">Discussion & limitations</div><div class="step-desc">What the evidence shows · gaps · quality caveats</div></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+
+        <!-- EMPIRICAL ARTICLE / JOURNAL-FORMAT PAPER -->
+        <div class="card" data-degrees="msc phd">
+          <div class="card-header">
+            <div class="card-title">Empirical Journal-Format Paper</div>
+          </div>
+          <div class="card-body">Some MSc programmes and most PhD programmes require you to write up research in the format of a peer-reviewed journal article — usually APA style. This is distinct from a thesis chapter: it is tightly wordcounted, structured for journal submission, and written for a specialist audience rather than an examiner. PhD candidates often submit these as part of a "papers model" thesis.</div>
+          <div class="card-meta">
+            <span class="tag tag-msc">MSc</span>
+            <span class="tag tag-phd">PhD</span>
+            <span class="wordcount">5,000–8,000 words · formatted to target journal guidelines</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> APA empirical article structure
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Abstract</div><div class="step-desc">150–250 words · background, aim, method, results, conclusion</div></div></li>
+                <li><div><div class="step-title">Introduction</div><div class="step-desc">Literature context · gap · hypotheses or aims · tight and focused</div></div></li>
+                <li><div><div class="step-title">Method</div><div class="step-desc">Participants · materials · procedure · analysis · ethics</div></div></li>
+                <li><div><div class="step-title">Results</div><div class="step-desc">Statistical or thematic findings · tables / figures · no interpretation</div></div></li>
+                <li><div><div class="step-title">Discussion</div><div class="step-desc">Interpretation · links to literature · limitations · future research</div></div></li>
+                <li><div><div class="step-title">References</div><div class="step-desc">APA 7th · complete and consistent</div></div></li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ SECTION: EXAMS & VIVA ══ -->
+    <div id="exams" class="section-group">
+      <div class="section-heading">
+        <div class="section-icon icon-blue">🎓</div>
+        <h2>Examinations & viva voce</h2>
+        <span class="count-badge">2 types · MSc · PhD</span>
+      </div>
+      <p class="section-desc">Formal assessments under conditions. The written exam rewards preparation of clear, structured arguments under time pressure. The PhD viva is an oral defence of your entire thesis — the most intellectually demanding moment of doctoral study.</p>
+
+      <div class="cards-grid">
+        <!-- WRITTEN EXAM -->
+        <div class="card" data-degrees="msc ma">
+          <div class="card-header">
+            <div class="card-title">Written Examination</div>
+          </div>
+          <div class="card-body">Essay-based exams under timed conditions, either unseen (question revealed on the day) or seen (question released in advance). At postgraduate level, the marker is looking for the same qualities as in a coursework essay: a clear argument, critical engagement with theory, and evidenced claims. Time management is the main additional challenge.</div>
+          <div class="card-meta">
+            <span class="tag tag-msc">MSc</span>
+            <span class="tag tag-ma">MA</span>
+            <span class="wordcount">Usually 2–3 hours · 1–3 essay questions</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Exam prep guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> Time management approach
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Read all questions first (5 min)</div><div class="step-desc">Choose carefully · note which questions allow you to show your best thinking</div></div></li>
+                <li><div><div class="step-title">Plan before writing (8–10 min per essay)</div><div class="step-desc">Argument · 3–4 main points · key evidence for each</div></div></li>
+                <li><div><div class="step-title">Write to time</div><div class="step-desc">Divide remaining time equally across essays · do not over-run the first</div></div></li>
+                <li><div><div class="step-title">Reserve 5 min to review</div><div class="step-desc">Check your argument is clear · introductions say what you'll argue</div></div></li>
+              </ol>
+              <div class="card-tip tip-blue">A partial answer to all questions always outperforms a perfect answer to one. Markers cannot award marks for essays not written.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIVA VOCE -->
+        <div class="card" data-degrees="phd">
+          <div class="card-header">
+            <div class="card-title">Viva Voce — PhD Oral Defence</div>
+          </div>
+          <div class="card-body">A 1–3 hour oral examination of your completed thesis, conducted by two examiners (usually one internal, one external). You are expected to defend every choice — methodological, theoretical, analytical — and to situate your contribution within the field. Most students pass; the goal is not to catch you out but to verify that the work is genuinely yours and that you understand it deeply.</div>
+          <div class="card-meta">
+            <span class="tag tag-phd">PhD only</span>
+            <span class="wordcount">1–3 hours · 2 examiners · typically minor or major corrections follow</span>
+          </div>
+          <div class="card-meta" style="margin-top:10px;">
+            <a class="structure-link coming" href="#">📄 Viva preparation guide coming soon</a>
+          </div>
+          <div class="structure-accordion">
+            <button class="accordion-toggle" onclick="toggleAccordion(this)">
+              <span class="accordion-arrow">▶</span> How a viva typically unfolds
+            </button>
+            <div class="accordion-body">
+              <ol class="structure-steps">
+                <li><div><div class="step-title">Opening question</div><div class="step-desc">Usually: "In your own words, what is your thesis about and what does it contribute?"</div></div></li>
+                <li><div><div class="step-title">Deep dive into the research question</div><div class="step-desc">Why this question · why now · what alternatives did you consider?</div></div></li>
+                <li><div><div class="step-title">Methodology scrutiny</div><div class="step-desc">Defend every design decision · what would you do differently?</div></div></li>
+                <li><div><div class="step-title">Literature engagement</div><div class="step-desc">Why did you include / exclude certain works · how do you respond to key critics?</div></div></li>
+                <li><div><div class="step-title">Contribution and implications</div><div class="step-desc">What does the field now know that it didn't? · What are the next steps?</div></div></li>
+                <li><div><div class="step-title">Corrections discussion</div><div class="step-desc">Examiners outline any required changes · usually minor or major corrections</div></div></li>
+              </ol>
+              <div class="card-tip tip-blue">Re-read your thesis in the weeks before the viva as if you are a critical examiner. Note every place where you feel uncertain or where a question could be asked — those are exactly the areas to prepare.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div><!-- /shell -->
+
+<script>
+  function scrollTo(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+  }
+
+  function toggleAccordion(btn) {
+    const body = btn.nextElementSibling;
+    const isOpen = body.classList.contains('visible');
+    body.classList.toggle('visible', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+  }
+
+  function filterDegree(degree, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    document.querySelectorAll('.card').forEach(card => {
+      if (degree === 'all') {
+        card.classList.remove('hidden');
+      } else {
+        const degrees = card.dataset.degrees || '';
+        card.classList.toggle('hidden', !degrees.includes(degree));
+      }
+    });
+
+    // Hide empty sections
+    document.querySelectorAll('.section-group').forEach(section => {
+      const visible = [...section.querySelectorAll('.card')].some(c => !c.classList.contains('hidden'));
+      section.classList.toggle('hidden', !visible);
+    });
+  }
+
+  // Intersection observer for sidebar active state
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id;
+        document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+        const link = document.querySelector(`.sidebar-link[onclick="scrollTo('${id}')"]`);
+        if (link) link.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.section-group[id]').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
